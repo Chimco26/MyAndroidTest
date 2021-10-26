@@ -60,7 +60,7 @@ public class ListLessonFragment extends Fragment implements GoToOneLessonFragmen
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_list_class, container, false);
+        View v = inflater.inflate(R.layout.fragment_list_lesson, container, false);
         mLessonsRecyclerView = v.findViewById(R.id.lesson_recyclerView);
         mUserName = v.findViewById(R.id.user_name);
         mUserName.setText(userName);
@@ -70,6 +70,7 @@ public class ListLessonFragment extends Fragment implements GoToOneLessonFragmen
     }
 
     private void initLessonList(){
+        mListLessons.clear();
         String[] androidRessources = getResources().getStringArray(R.array.android_ressources);
         String[] webRessources = getResources().getStringArray(R.array.web_ressources);
         String[] djangoRessources = getResources().getStringArray(R.array.django_ressources);
@@ -97,7 +98,7 @@ public class ListLessonFragment extends Fragment implements GoToOneLessonFragmen
 
     @Override
     public void goToOneLessonFrag(LessonModel lessonModel) {
-        OneLessonFragment oneLessonFrag= OneLessonFragment.newInstance(lessonModel.getTitle(), lessonModel.getSubTitle(), lessonModel.getDescriptionLesson());
+        OneLessonFragment oneLessonFrag= OneLessonFragment.newInstance(lessonModel.getImageRessource(), lessonModel.getSubTitle(), lessonModel.getDescriptionLesson());
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragmentContainerView, oneLessonFrag, "findThisFragment")
                 .addToBackStack(null)
