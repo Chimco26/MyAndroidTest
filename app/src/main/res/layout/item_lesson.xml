@@ -6,14 +6,15 @@
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
     android:layout_marginTop="10dp"
-    android:weightSum="7">
+    android:weightSum="7"
+    android:background="@android:color/darker_gray">
 
     <ImageView
         android:id="@+id/lesson_image"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="3"
-        android:scaleType="fitXY"
+        android:scaleType="centerInside"
         android:adjustViewBounds="true"
         android:background="@drawable/image_view_border"/>
 
@@ -40,24 +41,39 @@
             android:layout_height="wrap_content">
 
             <ImageButton
+                android:id="@+id/star1"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@drawable/ic_baseline_star_24"/>
+                android:tag="1"
+                android:background="@android:color/darker_gray"
+                android:src="@drawable/ic_baseline_star_24" />
             <ImageButton
+                android:id="@+id/star2"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@drawable/ic_baseline_star_24"/>
+                android:tag="2"
+                android:background="@android:color/darker_gray"
+                android:src="@drawable/ic_baseline_star_border_24"/>
             <ImageButton
+                android:id="@+id/star3"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@drawable/ic_baseline_star_24"/>
+                android:tag="3"
+                android:background="@android:color/darker_gray"
+                android:src="@drawable/ic_baseline_star_border_24"/>
             <ImageButton
+                android:id="@+id/star4"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@drawable/ic_baseline_star_24"/>
+                android:tag="4"
+                android:background="@android:color/darker_gray"
+                android:src="@drawable/ic_baseline_star_border_24"/>
             <ImageButton
+                android:id="@+id/star5"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
+                android:tag="5"
+                android:background="@android:color/darker_gray"
                 android:src="@drawable/ic_baseline_star_border_24"/>
 
         </LinearLayout>

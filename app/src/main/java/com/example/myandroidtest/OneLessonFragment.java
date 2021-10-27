@@ -23,15 +23,18 @@ public class OneLessonFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private static final String ARG_PARAM3 = "param3";
+    private static final String ARG_PARAM4 = "param4";
 
     // TODO: Rename and change types of parameters
+    private int image;
+    private String title;
     private String subTitle;
     private String description;
-    private int image;
 
+    private ImageView mImageView;
+    private TextView mTitleTextView;
     private TextView mSubtitleTextView;
     private TextView mDescriptionTextView;
-    private ImageView mImageView;
     private ImageButton mArrowBack;
 
     public OneLessonFragment() {
@@ -39,12 +42,13 @@ public class OneLessonFragment extends Fragment {
     }
 
     // TODO: Rename and change types and number of parameters
-    public static OneLessonFragment newInstance(int image, String subTitle, String description) {
+    public static OneLessonFragment newInstance(int image, String title, String subTitle, String description) {
         OneLessonFragment fragment = new OneLessonFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_PARAM1, image);
         args.putString(ARG_PARAM2, subTitle);
         args.putString(ARG_PARAM3, description);
+        args.putString(ARG_PARAM4, title);
         fragment.setArguments(args);
         return fragment;
     }
@@ -56,6 +60,7 @@ public class OneLessonFragment extends Fragment {
             image = getArguments().getInt(ARG_PARAM1);
             subTitle = getArguments().getString(ARG_PARAM2);
             description = getArguments().getString(ARG_PARAM3);
+            title = getArguments().getString(ARG_PARAM4);
         }
     }
 
@@ -64,6 +69,7 @@ public class OneLessonFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_one_lesson, container, false);
+        mTitleTextView = v.findViewById(R.id.title_lesson);
         mSubtitleTextView = v.findViewById(R.id.sub_title_lesson);
         mDescriptionTextView = v.findViewById(R.id.description_lesson);
         mImageView = v.findViewById(R.id.image_one_leson);
@@ -73,6 +79,7 @@ public class OneLessonFragment extends Fragment {
                 getActivity().onBackPressed();
             }
         });
+        mTitleTextView.setText(title);
         mSubtitleTextView.setText(subTitle);
         mDescriptionTextView.setText(description);
         mImageView.setImageResource(image);

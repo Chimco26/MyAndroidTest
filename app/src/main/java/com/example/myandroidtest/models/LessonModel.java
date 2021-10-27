@@ -5,6 +5,8 @@ public class LessonModel {
     private String subTitle;
     private int imageRessource;
     private String descriptionLesson;
+    private int score;
+
 
 
     public LessonModel(String title, String subTitle, String descriptionLesson, int imageRessource) {
@@ -12,6 +14,7 @@ public class LessonModel {
         this.subTitle = subTitle;
         this.imageRessource = imageRessource;
         this.descriptionLesson = descriptionLesson;
+        this.score = 1;
     }
 
     public String getSubTitle() {
@@ -29,6 +32,9 @@ public class LessonModel {
     public String getDescriptionLesson() {
         return descriptionLesson;
     }
+    public int getScore() {
+        return score;
+    }
 
     public void setSubTitle(String subTitle) {
         this.subTitle = subTitle;
@@ -44,5 +50,8 @@ public class LessonModel {
 
     public void setDescriptionLesson(String descriptionLesson) {
         this.descriptionLesson = descriptionLesson;
+    }
+    public void setScore(int score) {
+        this.score = score;
     }
 }

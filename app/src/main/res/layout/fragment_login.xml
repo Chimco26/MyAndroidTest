@@ -10,9 +10,10 @@
 
     <EditText
         android:id="@+id/editTextTextPersonName"
-        android:layout_width="273dp"
-        android:layout_height="77dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="@drawable/edit_text_border"
+        android:textSize="30dip"
         android:ems="10"
         android:hint="User name"
         android:inputType="textPersonName"
@@ -22,52 +23,46 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.120000005" />
+        app:layout_constraintVertical_bias="0.120000005"
+        app:layout_constraintWidth_percent="0.7"
+        app:layout_constraintHeight_percent="0.1"/>
 
     <EditText
         android:id="@+id/editTextTextPassword"
-        android:layout_width="273dp"
-        android:layout_height="77dp"
+        style="@android:style/TextAppearance.DeviceDefault.Medium"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="@drawable/edit_text_border"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
         android:paddingLeft="10dp"
-        style="@android:style/TextAppearance.DeviceDefault.Medium"
-
+        android:textSize="30dip"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
-        app:layout_constraintVertical_bias="0.050000012" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
-        app:layout_constraintVertical_bias="0.25"
-        tools:src="@drawable/udemy_image" />
+        app:layout_constraintVertical_bias="0.07999998"
+        app:layout_constraintWidth_percent="0.7"
+        app:layout_constraintHeight_percent="0.1"/>
 
     <Button
         android:id="@+id/send_button"
-        android:layout_width="273dp"
-        android:layout_height="77dp"
-        android:layout_marginTop="4dp"
-        android:text="Login"
-        android:textAllCaps="false"
-        android:background="#673AB7"
-        android:textColor="@color/black"
         style="@android:style/TextAppearance.DeviceDefault.Medium"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/login_button_border"
+        android:text="Login"
+        android:textSize="30dip"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.49" />
+        app:layout_constraintWidth_percent="0.7"
+        app:layout_constraintHeight_percent="0.1"/>
 
     <ProgressBar
         android:id="@+id/login_progressBar"
@@ -79,4 +74,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/udemy_image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
+        app:layout_constraintVertical_bias="0.17000002"
+        app:layout_constraintWidth_percent="0.95"
+        app:layout_constraintHeight_percent="0.2"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

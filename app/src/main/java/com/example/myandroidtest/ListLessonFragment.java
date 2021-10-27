@@ -37,6 +37,7 @@ public class ListLessonFragment extends Fragment implements GoToOneLessonFragmen
 
     public ListLessonFragment() {
         // Required empty public constructor
+
     }
 
     // TODO: Rename and change types and number of parameters
@@ -70,7 +71,8 @@ public class ListLessonFragment extends Fragment implements GoToOneLessonFragmen
     }
 
     private void initLessonList(){
-        mListLessons.clear();
+        if(mListLessons.size() > 1)
+            return;
         String[] androidRessources = getResources().getStringArray(R.array.android_ressources);
         String[] webRessources = getResources().getStringArray(R.array.web_ressources);
         String[] djangoRessources = getResources().getStringArray(R.array.django_ressources);
@@ -98,7 +100,7 @@ public class ListLessonFragment extends Fragment implements GoToOneLessonFragmen
 
     @Override
     public void goToOneLessonFrag(LessonModel lessonModel) {
-        OneLessonFragment oneLessonFrag= OneLessonFragment.newInstance(lessonModel.getImageRessource(), lessonModel.getSubTitle(), lessonModel.getDescriptionLesson());
+        OneLessonFragment oneLessonFrag= OneLessonFragment.newInstance(lessonModel.getImageRessource(), lessonModel.getTitle(), lessonModel.getSubTitle(), lessonModel.getDescriptionLesson());
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragmentContainerView, oneLessonFrag, "findThisFragment")
                 .addToBackStack(null)

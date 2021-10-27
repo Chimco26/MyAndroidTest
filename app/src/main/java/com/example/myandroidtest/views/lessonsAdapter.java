@@ -24,6 +24,7 @@ public class lessonsAdapter extends RecyclerView.Adapter<LessonsViewHolder> {
         this.mGoToOneLessonFragment = goToOneLessonFragment;
     }
 
+    @NonNull
     @Override
     public LessonsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
