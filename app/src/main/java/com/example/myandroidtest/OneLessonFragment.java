@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,31 +25,24 @@ public class OneLessonFragment extends Fragment {
     private static final String ARG_PARAM3 = "param3";
 
     // TODO: Rename and change types of parameters
-    private String title;
     private String subTitle;
     private String description;
+    private int image;
 
-    private TextView mTitleTextView;
     private TextView mSubtitleTextView;
+    private TextView mDescriptionTextView;
     private ImageView mImageView;
+    private ImageButton mArrowBack;
 
     public OneLessonFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param title Parameter 1.
-     * @param subTitle Parameter 2.
-     * @return A new instance of fragment OneLessonFragment.
-     */
     // TODO: Rename and change types and number of parameters
-    public static OneLessonFragment newInstance(String title, String subTitle, String description) {
+    public static OneLessonFragment newInstance(int image, String subTitle, String description) {
         OneLessonFragment fragment = new OneLessonFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, title);
+        args.putInt(ARG_PARAM1, image);
         args.putString(ARG_PARAM2, subTitle);
         args.putString(ARG_PARAM3, description);
         fragment.setArguments(args);
@@ -59,7 +53,7 @@ public class OneLessonFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            title = getArguments().getString(ARG_PARAM1);
+            image = getArguments().getInt(ARG_PARAM1);
             subTitle = getArguments().getString(ARG_PARAM2);
             description = getArguments().getString(ARG_PARAM3);
         }
@@ -70,10 +64,18 @@ public class OneLessonFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_one_lesson, container, false);
-        mTitleTextView = v.findViewById(R.id.title_lesson);
-        mSubtitleTextView = v.findViewById(R.id.subtitle_lesson);
-        mTitleTextView.setText(title);
+        mSubtitleTextView = v.findViewById(R.id.sub_title_lesson);
+        mDescriptionTextView = v.findViewById(R.id.description_lesson);
+        mImageView = v.findViewById(R.id.image_one_leson);
+        mArrowBack = v.findViewById(R.id.arrow_back);
+        mArrowBack.setOnClickListener(v1 -> {
+            if (getActivity() != null) {
+                getActivity().onBackPressed();
+            }
+        });
         mSubtitleTextView.setText(subTitle);
+        mDescriptionTextView.setText(description);
+        mImageView.setImageResource(image);
         return v;
     }
 }
