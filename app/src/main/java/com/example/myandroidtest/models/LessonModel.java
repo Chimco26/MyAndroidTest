@@ -14,7 +14,7 @@ public class LessonModel {
         this.subTitle = subTitle;
         this.imageRessource = imageRessource;
         this.descriptionLesson = descriptionLesson;
-        this.score = 1;
+        this.score = 0;
     }
 
     public String getSubTitle() {

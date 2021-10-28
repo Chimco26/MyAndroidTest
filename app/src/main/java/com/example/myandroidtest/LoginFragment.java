@@ -1,5 +1,7 @@
 package com.example.myandroidtest;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,10 +9,13 @@ import androidx.fragment.app.Fragment;
 import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
@@ -21,10 +26,13 @@ import android.widget.ProgressBar;
  */
 public class LoginFragment extends Fragment {
 
+    public static final String MY_PREFS_NAME = "MyPrefsName";
     private EditText mNameEditText;
     private EditText mPasswordEditText;
     private Button mSendButton;
     private ProgressBar mProgressBar;
+    private CheckBox mDisplayCheckBox;
+    SharedPreferences prefs;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -65,6 +73,7 @@ public class LoginFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        prefs = getActivity().getPreferences(Context.MODE_PRIVATE);
     }
 
     @Override
@@ -75,64 +84,37 @@ public class LoginFragment extends Fragment {
         mNameEditText = v.findViewById(R.id.editTextTextPersonName);
         mPasswordEditText = v.findViewById(R.id.editTextTextPassword);
         mProgressBar = v.findViewById(R.id.login_progressBar);
+        mDisplayCheckBox = v.findViewById(R.id.checkBox_display_password);
+        mDisplayCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked)
+                mPasswordEditText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            else
+                mPasswordEditText.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        });
         mSendButton = v.findViewById(R.id.send_button);
-        mSendButton.setEnabled(false);
         mSendButton.setOnClickListener(v1 -> {
-            mProgressBar.setVisibility(View.VISIBLE);
+            prefs.edit().putString("name", mNameEditText.getText().toString()).apply();
+            prefs.edit().putString("password", mPasswordEditText.getText().toString()).apply();
             setTimeOut();
         });
+            mNameEditText.setText(prefs.getString("name", ""));
+            mPasswordEditText.setText(prefs.getString("password", ""));
+        if(!mNameEditText.getText().toString().isEmpty() && !mPasswordEditText.getText().toString().isEmpty()){
+            mSendButton.setEnabled(true);
+        }
 
-
-        mNameEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(mNameEditText.getText().toString().isEmpty() || mPasswordEditText.getText().toString().isEmpty()){
-                    mSendButton.setEnabled(false);
-                } else {
-                    mSendButton.setEnabled(true);
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
-        mPasswordEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(mNameEditText.getText().toString().isEmpty() || mPasswordEditText.getText().toString().isEmpty()){
-                    mSendButton.setEnabled(false);
-                } else {
-                    mSendButton.setEnabled(true);
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
+        mNameEditText.addTextChangedListener(textWatcherListener);
+        mPasswordEditText.addTextChangedListener(textWatcherListener);
 
         return v;
     }
 
-    private void setTimeOut(){
+    private void setTimeOut() {
+        mProgressBar.setVisibility(View.VISIBLE);
         new android.os.Handler(Looper.getMainLooper()).postDelayed(
                 () -> {
                     mProgressBar.setVisibility(View.GONE);
-                    ListLessonFragment lessonFrag= ListLessonFragment.newInstance(mNameEditText.getText().toString());
+                    ListLessonFragmentListener lessonFrag = ListLessonFragmentListener.newInstance(mNameEditText.getText().toString());
                     getActivity().getSupportFragmentManager().beginTransaction()
                             .replace(R.id.fragmentContainerView, lessonFrag, "findThisFragment")
                             .addToBackStack(null)
@@ -140,4 +122,36 @@ public class LoginFragment extends Fragment {
                 },
                 1000);
     }
+
+    TextWatcher textWatcherListener = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            if (!mNameEditText.getText().toString().isEmpty() && !mPasswordEditText.getText().toString().isEmpty()) {
+
+                for (char oneChar : mNameEditText.getText().toString().toCharArray()) {
+                    if (oneChar != ' ')
+                        continue;
+                    else
+                        return;
+                }
+                for (char oneChar : mPasswordEditText.getText().toString().toCharArray()) {
+                    if (oneChar != ' ')
+                        continue;
+                    else
+                        return;
+                }
+                mSendButton.setEnabled(true);
+            }
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
 }

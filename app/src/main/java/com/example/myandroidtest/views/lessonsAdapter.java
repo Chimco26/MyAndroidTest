@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myandroidtest.R;
-import com.example.myandroidtest.interfaces.GoToOneLessonFragment;
+import com.example.myandroidtest.interfaces.GoToOneLessonFragmentListener;
 import com.example.myandroidtest.models.LessonModel;
 
 import java.util.List;
@@ -17,11 +17,11 @@ import java.util.List;
 public class lessonsAdapter extends RecyclerView.Adapter<LessonsViewHolder> {
 
     List<LessonModel> mListLessons;
-    GoToOneLessonFragment mGoToOneLessonFragment;
+    GoToOneLessonFragmentListener mGoToOneLessonFragmentListener;
 
-    public lessonsAdapter(List<LessonModel> mListLessons, GoToOneLessonFragment goToOneLessonFragment) {
+    public lessonsAdapter(List<LessonModel> mListLessons, GoToOneLessonFragmentListener goToOneLessonFragmentListener) {
         this.mListLessons = mListLessons;
-        this.mGoToOneLessonFragment = goToOneLessonFragment;
+        this.mGoToOneLessonFragmentListener = goToOneLessonFragmentListener;
     }
 
     @NonNull
@@ -30,7 +30,7 @@ public class lessonsAdapter extends RecyclerView.Adapter<LessonsViewHolder> {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.item_lesson, parent, false);
-        return new  LessonsViewHolder(view, mGoToOneLessonFragment);
+        return new  LessonsViewHolder(view, mGoToOneLessonFragmentListener);
     }
 
     @Override

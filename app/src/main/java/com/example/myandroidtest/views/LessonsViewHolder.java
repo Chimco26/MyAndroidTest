@@ -5,14 +5,12 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myandroidtest.R;
-import com.example.myandroidtest.interfaces.GoToOneLessonFragment;
+import com.example.myandroidtest.interfaces.GoToOneLessonFragmentListener;
 import com.example.myandroidtest.models.LessonModel;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -32,7 +30,7 @@ public class LessonsViewHolder extends RecyclerView.ViewHolder implements View.O
     private LessonModel mLessonModel;
 
 
-    public LessonsViewHolder(View itemView, GoToOneLessonFragment goToOneLessonFragment) {
+    public LessonsViewHolder(View itemView, GoToOneLessonFragmentListener goToOneLessonFragmentListener) {
         super(itemView);
         mLessonImage = itemView.findViewById(R.id.lesson_image);
         mLessonTitle = itemView.findViewById(R.id.lesson_title);
@@ -50,7 +48,7 @@ public class LessonsViewHolder extends RecyclerView.ViewHolder implements View.O
 
         itemView.setOnClickListener(v -> {
             if(mLessonModel != null){
-                goToOneLessonFragment.goToOneLessonFrag(mLessonModel);
+                goToOneLessonFragmentListener.goToOneLessonFrag(mLessonModel);
             }
         });
     }
@@ -91,6 +89,9 @@ public class LessonsViewHolder extends RecyclerView.ViewHolder implements View.O
 
     private void initStars(){
         switch (mLessonModel.getScore()){
+            case 0:
+                setStars(new ArrayList<>(Arrays.asList()));
+                break;
             case 1:
                 setStars(new ArrayList<>(Arrays.asList(mStar1)));
                 break;
@@ -107,7 +108,6 @@ public class LessonsViewHolder extends RecyclerView.ViewHolder implements View.O
                 setStars(new ArrayList<>(Arrays.asList(mStar1, mStar2, mStar3, mStar4, mStar5)));
                 break;
             default:
-                setStars(new ArrayList<>(Arrays.asList(mStar1)));
                 break;
         }
     }

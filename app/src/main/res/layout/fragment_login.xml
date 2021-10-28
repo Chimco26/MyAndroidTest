@@ -52,6 +52,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/login_button_border"
+        android:enabled="false"
         android:text="Login"
         android:textSize="30dip"
         android:textAllCaps="false"
@@ -87,4 +88,16 @@
         app:layout_constraintVertical_bias="0.17000002"
         app:layout_constraintWidth_percent="0.95"
         app:layout_constraintHeight_percent="0.2"/>
+
+    <CheckBox
+        android:id="@+id/checkBox_display_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/display_password"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

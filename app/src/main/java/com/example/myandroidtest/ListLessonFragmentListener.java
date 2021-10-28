@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.myandroidtest.interfaces.GoToOneLessonFragment;
+import com.example.myandroidtest.interfaces.GoToOneLessonFragmentListener;
 import com.example.myandroidtest.models.LessonModel;
 import com.example.myandroidtest.views.lessonsAdapter;
 
@@ -20,10 +20,10 @@ import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link ListLessonFragment#newInstance} factory method to
+ * Use the {@link ListLessonFragmentListener#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ListLessonFragment extends Fragment implements GoToOneLessonFragment {
+public class ListLessonFragmentListener extends Fragment implements GoToOneLessonFragmentListener {
 
     List<LessonModel> mListLessons = new ArrayList<>();
     RecyclerView mLessonsRecyclerView;
@@ -35,14 +35,14 @@ public class ListLessonFragment extends Fragment implements GoToOneLessonFragmen
     private static final String ARG_PARAM1 = "param1";
 
 
-    public ListLessonFragment() {
+    public ListLessonFragmentListener() {
         // Required empty public constructor
 
     }
 
     // TODO: Rename and change types and number of parameters
-    public static ListLessonFragment newInstance(String userName) {
-        ListLessonFragment fragment = new ListLessonFragment();
+    public static ListLessonFragmentListener newInstance(String userName) {
+        ListLessonFragmentListener fragment = new ListLessonFragmentListener();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, userName);
         fragment.setArguments(args);
