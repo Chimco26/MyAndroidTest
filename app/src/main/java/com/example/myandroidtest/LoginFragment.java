@@ -147,6 +147,7 @@ public class LoginFragment extends Fragment {
                 }
                 mSendButton.setEnabled(true);
             }
+            else mSendButton.setEnabled(false);
         }
 
         @Override
